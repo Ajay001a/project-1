@@ -4,108 +4,119 @@
 title = File Converter
 
 # (str) Package name
-package.name = fileconverter
+package.name = file-converter
 
-# (str) Package domain (should be your own domain)
-package.domain = org.yourdomain
+# (str) Package domain (needed for android/ios packaging)
+package.domain = org.example
 
-# (str) Source code where the main.py is located
+# (str) Source code where the main.py lives
 source.dir = .
 
-# (str) The main entry point of your application
-source.include_exts = py,png,jpg,kv,atlas
+# (list) Source files to include (let empty to include all the files)
+source.include_exts = py,png,jpg,kv,atlas,ogg
 
-# (str) Name of the main application file (e.g. main.py)
-# Change it if your main file is named differently
-main.py = main.py
+# (list) List of inclusions using pattern matching
+source.include_patterns = data/*.png, sound/*.ogg
 
-# (str) The directory in which your icon is located
-icon.filename = %(source.dir)s/icon.png
+# (list) Source files to exclude (let empty to not exclude anything)
+# source.exclude_exts = spec
 
-# (str) Supported orientations (one of landscape, sensorLandscape, portrait or all)
-orientation = landscape,portrait,landscape-reverse,portrait-reverse
+# (list) List of directories to exclude (let empty to not exclude anything)
+# source.exclude_dirs = tests, bin
 
-# (bool) Indicate if the application should be fullscreen
-fullscreen = 1
+# (list) List of exclusions using pattern matching
+# source.exclude_patterns = license, images/*/*.jpg
 
-# (str) Presplash background color (for .png files, using hex value)
-presplash.color = #000000
+# (str) Application versioning (method 1)
+version = 0.1
 
-# (str) Presplash image (e.g. 'res/presplash.png')
-presplash.filename = %(source.dir)s/presplash.png
+# (str) Application versioning (method 2)
+# version.regex = __version__ = ['"](.*)['"]
+# version.filename = %(source.dir)s/main.py
 
-# (str) Adaptive icon of the application (used if Android API level is 26+ at runtime)
-# icon.adaptive_foreground.filename = %(source.dir)s/icon_fg.png
-# icon.adaptive_background.filename = %(source.dir)s/icon_bg.png
+# (list) Application requirements
+requirements = python3,kivy,opencv-python-headless,Pillow
 
-# (list) Permissions
-android.permissions = INTERNET, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE, CAMERA
+# (str) Custom source folders for requirements
+# requirements.source.kivy = ../../kivy
 
-# (int) Android API to use
+# (list) Garden requirements
+# garden_requirements =
+
+# (str) Presplash of the application
+# presplash.filename = %(source.dir)s/data/presplash.png
+
+# (str) Icon of the application
+icon.filename = %(source.dir)s/data/icon.png
+
+# (str) Supported orientation (one of landscape, portrait or all)
+orientation = portrait
+
+# (str) Path to the Android SDK
+# android.sdk_path = /path/to/android/sdk
+
+# (str) Path to the Android NDK
+# android.ndk_path = /path/to/android/ndk
+
+# (str) Android NDK version
+android.ndk = 25
+
+# (str) Android SDK version
+android.sdk = 33
+
+# (str) Android API level
 android.api = 33
 
-# (int) Minimum API required
-android.minapi = 21
+# (str) Android NDK API level
+android.ndk_api = 25
 
-# (int) Android SDK version to use
-#android.sdk = 28
+# (list) Permissions
+android.permissions = INTERNET, CAMERA, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE
 
-# (str) Android NDK version to use
-android.ndk = 23b
-# (list) Path to the Android NDK (optional)
-# This is the path to the NDK directory. 
-# If not specified, Buildozer will use the default version.
+# (bool) Build the app in debug mode (default is True)
+# android.debug = True
 
+# (str) Application package
+# android.package = org.example.fileconverter
 
+# (str) Application entry point
+# android.entrypoint = main
 
-# (bool) Indicate if you want to create an x86 package
-android.arch = armeabi-v7a
+# (bool) Enable GPU support (default is False)
+# gpu = False
 
-# (str) Android architecture
-android.archs = arm64-v8a, armeabi-v7a
+# (bool) Whether to use a custom language (default is False)
+# custom_lang = False
 
-# (str) Application version
-version = 1.0
+# (str) Path to the custom language file
+# lang.filename = %(source.dir)s/lang.kv
 
-# (str) Requirements for the app (comma separated)
-requirements = python3,kivy,pillow
+# (bool) Enable touchscreen support (default is True)
+# touchscreen = True
 
-# (bool) Enable Android logcat output to the console
-android.logcat = 1
+# (str) Target architecture (default is 'armeabi-v7a')
+# android.arch = armeabi-v7a
 
-# (str) An example of specifying requirements
-# (list) python3requirements
-# android.requirements = android
+# (list) List of additional environment variables
+# android.env_vars =
 
-# (bool) Use the updated `pythonforandroid` toolchain
-use_legacy_toolchain = 1
+# (bool) Enable verbose output (default is False)
+# verbose = False
 
-# (bool) Indicate whether to build for release
-android.release = False
+# (bool) Enable app bundle (default is False)
+# android.app_bundle = False
 
-# (bool) Install the debug version of the APK on your device after building
-android.debug_install = True
+# (bool) Enable multi-dex support (default is False)
+# android.multi_dex = False
 
-# (bool) Enable SDL2 support (required for Kivy >= 2.0.0)
-android.add_sdl2 = True
+# (list) List of additional files to include (e.g. data files)
+# include_files =
 
-# (bool) Enable Vibrate support (required for Kivy >= 2.0.0)
-android.add_vibrate = False
+# (list) List of directories to include (e.g. assets)
+# include_dirs =
 
-# (bool) Include GStreamer libraries in the APK (required for Kivy >= 2.0.0)
-android.add_gstreamer = False
+# (list) List of excluded files (e.g. temp files)
+# exclude_files =
 
-# (bool) Copy the following files into the APK (required for Kivy >= 2.0.0)
-android.add_assets = assets
-
-# (str) The URL for the repository where the source code of the application is located
-android.add_rctask = False
-
-# (bool) Enable debug symbols in release builds
-android.release_debug_symbols = 1
-
-# (str) The directory where the pre-built APK will be placed
-android.dist_dir = /dist
-
-# (str) The number of threads to use during the build process
-android.build_threads = 4
+# (bool) Enable a single APK (default is False)
+# android.single_apk = False
