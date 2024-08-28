@@ -1,0 +1,42 @@
+name: FileConverterApp CI/CD Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Ensure the correct version of Python is used
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install kivy numpy opencv-python pillow
+
+      - name: Test the application
+        run: |
+          python -m unittest discover -s tests  # Assuming you have tests in a 'tests' folder
+
+      - name: Build for Android
+        run: |
+          # Use python-for-android or Buildozer for building
+          # Example for Buildozer:
+          pip install buildozer
+          buildozer android release
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to server or store
+        run: |
+          # Example deployment commands
+          # This will depend on where you are deploying the app (e.g., Google Play, S3, etc.)
